@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hisab karlo...</title>
+  <link rel="stylesheet" href="./calculator.css">
+</head>
+<body>
+  <h1 class="title"></h1>
+  <div class="calculator-container">
+    <div class="lang-change">
+      <button class="language">
+        <span id="toggle-icon">🇮🇳</span>
+      </button>
+      <p id="info"></p>
+    </div>
+    <div class="input-container">
+      <input type="text" id="input" value="0" placeholder="0" disabled >
+    </div>
+    <div class="row">
+      <button class="operator btn">AC</button>
+      <button class="operator btn">%</button>
+      <button class="operator btn">C</button>
+      <button class="operator btn">/</button>
+    </div>
+    <div class="row">
+      <button class="nums btn" id="seven">7</button>
+      <button class="nums btn" id="eight">8</button>
+      <button class="nums btn" id="nine">9</button>
+      <button class="operator btn">*</button>
+    </div>
+    <div class="row">
+      <button class="nums btn" id="four">4</button>
+      <button class="nums btn" id="five">5</button>
+      <button class="nums btn" id="six">6</button>
+      <button class="operator btn">-</button>
+    </div>
+    <div class="row">
+      <button class="nums btn" id="one">1</button>
+      <button class="nums btn" id="two">2</button>
+      <button class="nums btn" id="three">3</button>
+      <button class="operator btn">+</button>
+    </div>
+    <div class="row">
+      <button class="nums btn" id="double-zero">00</button>
+      <button class="nums btn" id="zero">0</button>
+      <button class="nums btn">.</button>
+      <button class="equal btn">=</button>
+    </div>
+  </div>
+<script src="./calculator.js"></script>
+</body>
+</html>
