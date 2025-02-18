@@ -11,7 +11,7 @@ let value = ''
 submit_btn.addEventListener('click', () => {
   let weight_in_num = Number(weight.value)
   let height_for_calculation = Math.pow((Number(height.value)/100), 2)
-  console.log(weight_in_num, height_for_calculation)
+  // console.log(weight_in_num, height_for_calculation)
   bmi = weight_in_num / height_for_calculation
 
   if (bmi < 18.5){
