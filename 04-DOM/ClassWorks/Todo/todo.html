@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>kam karo jo likhe ho</title>
+  <link rel="stylesheet" href="./todo.css">
 </head>
 <body>
-  <h1>TODO App</h1>
+  <h1 id="title">Your Todo App</h1>
   <div id="container">
-    <div id="input-btn">
-      <input type="text" placeholder="Enter your todo" class="todos">
-      <button class="add-btn">Add</button>
+    <div id="input-and-btn">
+      <input type="datetime-local" class="todo-date todo-time-from" > <br>
+      <input type="datetime-local" class="todo-date todo-time-to"> <br>
+      <input type="text" placeholder="Enter your todo" class="todos" required> <br>
+      <button type="submit" class="add-btn">Add</button>
     </div>
     <div class="todo-container">
       <ul class="todos-list">
@@ -18,5 +21,6 @@
       </ul>
     </div>
   </div>
+  <script src="./todo.js"></script>
 </body>
 </html>
