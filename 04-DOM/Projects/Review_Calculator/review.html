@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>thode feedback bhi diya karo...</title>
+  <link rel="stylesheet" href="./review.css">
+</head>
+<body>
+  <h1 class="project-title">Review Rating App</h1>
+  <div class="container">
+    <div class="review-inputs-container">
+      <h1 class="title">Give your feedbacks</h1>
+      <div class="review-inputs">
+        <input type="text" class="review-title" placeholder="Enter the title" required> <br>
+        <textarea name="desc" id="review-desc" placeholder="Enter about" required></textarea>
+      </div>
+      <div class="stars" id="starRating">
+        <span data-value="1" class="star">&#9734;</span>
+        <span data-value="2" class="star">&#9734;</span>
+        <span data-value="3" class="star">&#9734;</span>
+        <span data-value="4" class="star">&#9734;</span>
+        <span data-value="5" class="star">&#9734;</span>
+      </div>
+      <button class="submit">Add</button>
+    </div>
+    <div class="review-showcase">
+      <h2 class="review-showcase-title">Your reviews</h2>
+      <div class="list_of_reviews">
+        <ul id="lists">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="./review.js"></script>
+</body>
+</html>
