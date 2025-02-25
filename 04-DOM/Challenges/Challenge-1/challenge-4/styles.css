@@ -3,7 +3,7 @@ body {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f7f9fc;
+  background-color: #14181d;
 }
 
 h1 {
@@ -47,6 +47,7 @@ h1 {
 .task-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 12px 15px;
   background-color: white;
   border-radius: 4px;
@@ -75,6 +76,13 @@ h1 {
   width: 18px;
   height: 18px;
   cursor: pointer;
+  border: 1px solid #000;
+  /* background-color: red; */
+}
+
+.complete{
+  text-decoration: line-through;
+  color: #95a5a6;
 }
 
 .task-item.completed .task-text {
