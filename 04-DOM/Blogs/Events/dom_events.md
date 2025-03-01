@@ -39,3 +39,5 @@
 7. Animation & Transition Events
 8. Window/Document Events
 9. Media Events
+
+#### 1. Mouse Events :-
