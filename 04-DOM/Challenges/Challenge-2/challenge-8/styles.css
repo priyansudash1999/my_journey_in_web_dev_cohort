@@ -3,6 +3,11 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background-color: #666;
+}
+
+#title{
+  text-align: center;
 }
 
 .products {
@@ -21,8 +26,7 @@ body {
 
 .product img {
   width: 100%;
-  max-width: 150px;
-  height: auto;
+  max-height: 50%;
 }
 
 .cart {
@@ -39,6 +43,8 @@ body {
   border-bottom: 1px solid #eee;
 }
 
+
+
 .quantity-controls {
   display: flex;
   align-items: center;
@@ -52,6 +58,6 @@ button {
 
 .empty-cart {
   text-align: center;
-  color: #666;
+  color: #b12121;
   padding: 20px;
 }
