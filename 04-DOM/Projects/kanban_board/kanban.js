@@ -1,35 +1,77 @@
-//  Gey all btns
+// get all boards
+const todo_board = document.getElementById('todo-board')
+const continue_board = document.getElementById('continue-board')
+const done_board = document.getElementById('done-board')
+const submit_board = document.getElementById('submitted-board')
+
 
 const todo_add_btn = document.getElementById('todo-add-btn');
-// const continue_add_btn = document.getElementById('continue-add-btn')
-// const done_add_btn = document.getElementById('done-add-btn')
-// const submit_add_btn = document.getElementById('"submit-add-btn')
-
 
 // get sort button
-const sort_btn = document.getElementsByClassName('sort')[0];
+const todo_sort_btn = document.getElementsByClassName('sort')[0];
 const filter_btn = document.getElementsByClassName('filter')[0]
 const customize_btn = document.getElementsByClassName('customize')[0]
 
 
-const sort_tasks = () => {
+// get remaining sort buttons
+const continue_sort_btn = document.getElementById('continue-sort-btn')
+const done_sort_button = document.getElementById('done-sort-btn')
+const submit_sort_button = document.getElementById('submit-sort-btn')
 
+
+
+
+todo_sort_btn.addEventListener('click', () => sort_tasks(todo_board))
+continue_sort_btn.addEventListener('click', () => sort_tasks(continue_board))
+done_sort_button.addEventListener('click', () => sort_tasks(done_board))
+submit_sort_button.addEventListener('click', () => sort_tasks(submit_board))
+
+
+customize_btn.addEventListener('click', () => customize_task())
+
+const sort_tasks = (board) => {
+  let tasks = Array.from(board.getElementsByClassName('task'))
+
+  tasks.sort((a, b)=> {
+    let dateA = new Date(parseDate(a.querySelector('.date').innerText));
+    let dateB = new Date(parseDate(b.querySelector('.date').innerText));
+    return dateA - dateB;
+  }) 
+  tasks.forEach((task) => {
+    board.appendChild(task)
+  });
 }
+
+const parseDate = (date) => {
+  let parts = date.match(/(\d{1,2})[a-zA-Z]*\s(\w+)/);
+  if (!parts) return new Date(); 
+
+  let day = parseInt(parts[1]);
+  let month = getMonthNumber(parts[2]);
+
+  let currentYear = new Date().getFullYear();
+  return new Date(currentYear, month, day);
+}
+
+function getMonthNumber(monthName) {
+  const months = ["january", "february", "march", "april", "may", "june", 
+                  "july", "august", "september", "october", "november", "december"];
+  return months.indexOf(monthName.toLowerCase());
+}
+
+
 
 const filter_task = () => {
 
 }
 
 const customize_task = () => {
-
+  alert('Available very soon...')
 }
 
 todo_add_btn.addEventListener('click', () => addNewTodoTask())
 
 const todo_new_list = []
-// const continue_new_list = []
-// const done_new_list = []
-// const submit_new_list = []
 
 const addNewTodoTask = () => {
   function getRequiredInput(message) {
