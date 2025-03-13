@@ -13,12 +13,22 @@ const filter_btn = document.getElementsByClassName('filter')[0]
 const customize_btn = document.getElementsByClassName('customize')[0]
 
 
+// get bg button
+const bg_btn = document.getElementById('bg-changer')
+bg_btn.addEventListener('click', () => {
+  backgroundHandler()
+})
+
 // get remaining sort buttons
 const continue_sort_btn = document.getElementById('continue-sort-btn')
 const done_sort_button = document.getElementById('done-sort-btn')
 const submit_sort_button = document.getElementById('submit-sort-btn')
 
-
+// get menu icon for controlling the sidebar.
+document.getElementById("menuToggle").addEventListener("click", function () {
+  document.getElementById("sidebar").classList.toggle("hidden");
+  document.getElementById("main-contents").classList.toggle("go-left");
+});
 
 
 todo_sort_btn.addEventListener('click', () => sort_tasks(todo_board))
@@ -58,7 +68,6 @@ function getMonthNumber(monthName) {
                   "july", "august", "september", "october", "november", "december"];
   return months.indexOf(monthName.toLowerCase());
 }
-
 
 
 const filter_task = () => {
@@ -157,18 +166,24 @@ const addNewTodoTask = () => {
   getCountOfTasks();
 };
 
-const addNewContinueTask = () => {
 
-}
+// edit_btn_handler
+document.addEventListener('click', (event) => {
+  if (event.target.classList.contains('edit')) {
+    const new_todo_name = prompt('Enter title:');
+    const new_todo_priority = prompt('Enter Priority (high/low/medium):');
+    const new_todo_date = prompt('Enter Date :');
+    const new_todo_time = prompt('Enter time in hours:');
+  }
+});
 
-const addNewDoneTask = () => {
-
-}
-
-const addNewSubmitTask = () => {
-
-}
-
+// delete_btn_handler
+document.addEventListener('click', (event) => {
+  if (event.target.classList.contains('dlt')) {
+    const parent = event.target.parentElement.parentElement.parentElement;
+    parent.remove()
+  }
+});
 
 
 const dropped = (e) => {
@@ -212,6 +227,20 @@ function getCountOfTasks(){
 
 function updateHeader(header, column){
   header.innerText = `${header.innerText.split(" ")[0]} [${column.children.length}]`
+}
+
+const backgroundHandler = () => {
+  if(bg_btn.innerText === '☀️'){
+    bg_btn.innerText = '🌙'
+    document.body.style.backgroundColor = '#272929'
+    document.body.style.color = '#fff'
+    document.querySelector('#task1').color = '#000'
+  }
+  else{
+    bg_btn.innerText ='☀️'
+    document.body.style.backgroundColor = '#fff'
+    document.body.style.color = '#000'
+  }
 }
 
 getCountOfTasks()
