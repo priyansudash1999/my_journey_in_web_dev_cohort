@@ -24,6 +24,10 @@ const continue_sort_btn = document.getElementById('continue-sort-btn')
 const done_sort_button = document.getElementById('done-sort-btn')
 const submit_sort_button = document.getElementById('submit-sort-btn')
 
+
+
+
+
 // get menu icon for controlling the sidebar.
 document.getElementById("menuToggle").addEventListener("click", function () {
   document.getElementById("sidebar").classList.toggle("hidden");
@@ -37,6 +41,7 @@ done_sort_button.addEventListener('click', () => sort_tasks(done_board))
 submit_sort_button.addEventListener('click', () => sort_tasks(submit_board))
 
 
+document.getElementById('filter').addEventListener('click', () => filter_task())
 customize_btn.addEventListener('click', () => customize_task())
 
 const sort_tasks = (board) => {
@@ -71,7 +76,7 @@ function getMonthNumber(monthName) {
 
 
 const filter_task = () => {
-
+  alert('Available very soon...')
 }
 
 const customize_task = () => {
@@ -80,7 +85,14 @@ const customize_task = () => {
 
 todo_add_btn.addEventListener('click', () => addNewTodoTask())
 
-const todo_new_list = []
+const todo_list = [
+  {title: 'chaicode Assignments', priority: 'high', date: '13rd March', time: '2 hrs'},
+  {title: 'Web dev cohort Videos Revise', priority: 'medium', date: '14th March', time: '12 hrs'},
+  {title: 'Web dev new Js videos', priority: 'high', date: '14th March', time: '3 hrs'},
+  {title: 'DSA Array revise', priority: 'low', date: '15th March', time: '1 hrs'},
+  {title: 'Jobs apply', priority: 'high', date: '09th March', time: '1 hrs'}
+]
+
 
 const addNewTodoTask = () => {
   function getRequiredInput(message) {
@@ -93,10 +105,10 @@ const addNewTodoTask = () => {
 
   const todo_name = getRequiredInput('Enter title:');
   const todo_priority = getRequiredInput('Enter Priority (high/low/medium):');
-  const todo_date = getRequiredInput('Enter Date :');
-  const todo_time = getRequiredInput('Enter time in hours:');
+  const todo_date = getRequiredInput('Enter Date (like 13rd March):');
+  const todo_time = getRequiredInput('Enter time in hours (like 10):');
   
-  todo_new_list.push({todo_name, todo_priority, todo_date, todo_time});
+  todo_list.push({title: todo_name, priority: todo_priority, date: todo_date, time: todo_time});
 
   const todo_board = document.getElementById('todo-board'); 
 
@@ -120,7 +132,25 @@ const addNewTodoTask = () => {
   const priority_para = document.createElement('p');
   priority_para.innerText = todo_priority;
   priority_para.classList.add(todo_priority.toLowerCase());
+
+  const edit_dlt_container = document.createElement('div');
+  edit_dlt_container.classList.add('edit-delete-btn')
+
+  const edit = document.createElement('button');
+  edit.innerText = '✎';
+  edit.classList.add('edit')
+
+  const dlt = document.createElement('button');
+  dlt.innerText = 'X';
+  dlt.classList.add('dlt')
+
+  edit_dlt_container.appendChild(edit)
+  edit_dlt_container.appendChild(dlt)
+
+
   middle_section.appendChild(priority_para);
+  middle_section.appendChild(edit_dlt_container);
+
 
   const bottom_section = document.createElement('div');
   bottom_section.classList.add('bottom-section');
@@ -150,7 +180,6 @@ const addNewTodoTask = () => {
   bottom_section.appendChild(left_part);
   bottom_section.appendChild(right_part);
 
-  // **Create Task Div**
   const task = document.createElement('div');
   task.classList.add('task');
   task.draggable = true;
@@ -170,10 +199,33 @@ const addNewTodoTask = () => {
 // edit_btn_handler
 document.addEventListener('click', (event) => {
   if (event.target.classList.contains('edit')) {
-    const new_todo_name = prompt('Enter title:');
-    const new_todo_priority = prompt('Enter Priority (high/low/medium):');
-    const new_todo_date = prompt('Enter Date :');
-    const new_todo_time = prompt('Enter time in hours:');
+    
+    const parent = event.target.closest('.task')
+    const title = parent.querySelector('.top-section').querySelector('.task-title').textContent
+
+    const findIndex = todo_list.findIndex(task => task.title === title)
+
+    if(findIndex !== -1){
+      const new_title = prompt('Enter new title:- ')
+      const new_priority = prompt('Enter new priority low/medium/high:- ')
+      const new_date = prompt('Enter new date:- ')
+      const new_time = prompt('Enter new time:- ')
+
+      todo_list[findIndex] = {
+        title: new_title,
+        priority: new_priority,
+        date: new_date, 
+        time: new_time
+      }
+
+      parent.querySelector('.top-section').querySelector('.task-title').textContent = new_title
+      parent.querySelector('.middle-section').querySelector('.priority').textContent = new_priority
+      parent.querySelector('.bottom-section').querySelector('.left-part').querySelector('.date').textContent = new_date
+      parent.querySelector('.bottom-section').querySelector('.right-part').querySelector('.time').textContent = new_time
+    }
+
+    // console.log(parent)
+
   }
 });
 
@@ -184,6 +236,15 @@ document.addEventListener('click', (event) => {
     parent.remove()
   }
 });
+
+document.getElementsByClassName('add')[0].addEventListener('mouseenter', () => {
+  alert('It will delete the current Project because no local stoarge or database used to store')
+})
+
+document.getElementsByClassName('share-btn')[0].addEventListener('click', () => {
+  alert('copy datas from browser console')
+  console.log(todo_list)
+})
 
 
 const dropped = (e) => {
@@ -229,18 +290,81 @@ function updateHeader(header, column){
   header.innerText = `${header.innerText.split(" ")[0]} [${column.children.length}]`
 }
 
+
+const icons = document.querySelectorAll('.icon')
+const main_sec = document.getElementById('main-contents')
+const update_name = document.getElementsByClassName('updated')[0]
+const share_title = document.getElementsByClassName('share-btn')[0]
+const search_bar = document.getElementsByClassName('search-btn')[0]
+const text_field = document.querySelector('.text-field')
+
 const backgroundHandler = () => {
-  if(bg_btn.innerText === '☀️'){
-    bg_btn.innerText = '🌙'
-    document.body.style.backgroundColor = '#272929'
-    document.body.style.color = '#fff'
-    document.querySelector('#task1').color = '#000'
+  if (bg_btn.innerText === '☀️') {
+    black_background_handler();
+  } else {
+    white_background_handler();
   }
-  else{
-    bg_btn.innerText ='☀️'
-    document.body.style.backgroundColor = '#fff'
-    document.body.style.color = '#000'
-  }
-}
+};
+
+const black_background_handler = () => {
+  icons.forEach(icon => {
+    icon.style.filter = "invert(1)"; 
+  });
+
+  bg_btn.innerText = '🌙';
+  document.body.style.backgroundColor = '#272929';
+  document.body.style.color = '#fff';
+
+  const filterBar = main_sec.querySelector('.filter-bar');
+  if (filterBar) filterBar.classList.add('bg-dark'); 
+  update_name.style.border = '1px solid white'
+  share_title.style.color = '#fff'
+  share_title.style.backgroundColor = '#272929'
+  share_title.style.border = '1px solid white'
+  search_bar.style.backgroundColor = '#272929'
+  text_field.style.backgroundColor = '#272929'
+  text_field.style.color = '#fff'
+};
+
+const white_background_handler = () => {
+  icons.forEach(icon => {
+    icon.style.filter = "invert(0)"; 
+  });
+
+  bg_btn.innerText = '☀️';
+  document.body.style.backgroundColor = '#fff';
+  document.body.style.color = '#000';
+
+  const filterBar = main_sec.querySelector('.filter-bar');
+  if (filterBar) filterBar.classList.remove('bg-dark');
+  update_name.style.border = '1px solid black'
+  share_title.style.color = '#000'
+  share_title.style.backgroundColor = '#fff'
+  share_title.style.border = '1px solid #272929'
+  search_bar.style.backgroundColor = '#fff'
+  text_field.style.backgroundColor = '#fff'
+  text_field.style.color = '#000'
+};
+
+
+// active search
+text_field.addEventListener('input', () => {
+  const searchTerm = text_field.value.trim().toLowerCase();
+  displayTasksAccordingToSearch(searchTerm);
+})
+
+const displayTasksAccordingToSearch = (searchTerm) => {
+  const allTasks = document.querySelectorAll('.task');
+  console.log(allTasks)
+
+  allTasks.forEach((task) => {
+    const title = task.querySelector('.top-section p').innerText.toLowerCase();
+    if (title.includes(searchTerm)) {
+      task.style.display = 'block';
+    } else {
+      task.style.display = 'none'; 
+    }
+  });
+};
 
 getCountOfTasks()

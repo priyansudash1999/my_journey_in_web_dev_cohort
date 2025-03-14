@@ -11,22 +11,22 @@
     <div class="sidebar" id="sidebar">
       <div class="logo-menu-container">
         <div class="logo-container">
-          <img src="./images/done-list.png" alt="planning-list" class="logo">
-          <p>Kanban Board</p>
+          <img src="./images/done-list.png" alt="planning-list" class="logo icon">
+          <p>BrainBoard</p>
         </div>
-        <img class="menu-icon" id="menuToggle" src="./images/menu (2).png" alt="">
+        <img class="menu-icon icon" id="menuToggle" src="./images/menu (2).png" alt="">
       </div>
       <div class="side-menu">
         <div class="menu-items">
-          <img src="./images/house.png" alt="home" class="home">
+          <img src="./images/house.png" alt="home" class="home icon">
           <p class="menu-item-title">Home</p>
         </div>
         <div class="menu-items">
-          <img src="./images/accept.png" alt="home" class="accept">
+          <img src="./images/accept.png" alt="home" class="accept icon">
           <p class="menu-item-title">My Tasks</p>
         </div>
         <div class="menu-items">
-          <img src="./images/bell.png" alt="home" class="notifications">
+          <img src="./images/bell.png" alt="home" class="notifications icon">
           <p class="menu-item-title">Notifications</p>
         </div>
         
@@ -56,7 +56,7 @@
     <div class="main-contents" id="main-contents">
       <div class="main-header">
         <div class="project-container">
-          <img src="./images/menu.png" alt="" class="menubar">
+          <img src="./images/menu.png" alt="" class="menubar icon">
           <div class="project-name-container">
             <p class="project-name">My Project 1</p>
             <div class="status">
@@ -73,31 +73,38 @@
             <img src="./images/woman.png" alt="" class="avatar">
           </div>
           <div class="share-btn">
-            <img src="./images/share.png" alt="" class="share">
+            <img src="./images/share.png" alt="" class="share icon">
             <p class="share-title">share</p>
           </div>
           <div class="search-btn">
-            <img src="./images/search (1).png" alt="" class="search">
-            <input type="text" placeholder="Search...">
+            <img src="./images/search (1).png" alt="" class="search icon">
+            <input type="text" placeholder="Search..." class="text-field">
           </div>
           <button id="bg-changer">☀️</button>
-          <button class="add">+</button>
-          <img src="./images/man.png" alt="" class="user">
+          <button class="add" title="Create a new Project">+</button>
+          <img src="./images/man.png" alt="" class="user" title="Priyansu Dash">
         </div>  
       </div>
       <div class="filter-bar">
         <p class="updated">Created By Priyansu</p>
         <div class="allValuesOfFilterBar">
-          <div class="icon-btn">
-            <img src="./images/filter.png" alt="filter" class="filter-icon filter">
+          <div class="icon-btn filter-btn">
+            <img src="./images/filter.png" alt="filter" class="filter-icon icon" id="filter">
             filter
+            <!-- <div class="filter-options hidden" id="filter-options">
+              <p onclick="filterTasks('All')">All</p>
+              <p onclick="filterTasks('High')">High</p>
+              <p onclick="filterTasks('Medium')">Medium</p>
+              <p onclick="filterTasks('Low')">Low</p>
+            </div> -->
           </div>
+          
           <div class="icon-btn">
-            <img src="./images/sort-az.png" alt="" class="filter-icon sort">
+            <img src="./images/sort-az.png" alt="" class="filter-icon sort icon">
             sort
           </div>
           <div class="icon-btn">
-            <img src="./images/menu-button.png" alt="Customize" class="filter-icon customize">
+            <img src="./images/menu-button.png" alt="Customize" class="filter-icon customize icon">
             Customize
           </div>
         </div>
@@ -106,30 +113,30 @@
         <div class="header">
           <div class="todo-container">
             <h4 class="todos" id="todo">TODO</h4>
-            <img src="./images/image-gallery.png" alt="" height="20px" width="20px" class="header-adding-img" id="todo-add-btn">
+            <img src="./images/image-gallery.png" alt="" height="20px" width="20px" class="header-adding-img  icon" id="todo-add-btn">
           </div>
           <div class="continue-container">
             <h4 class="continue" id="continue">CONTINUE</h4>
-            <img src="./images/sort.png" alt="" height="20px" width="20px" class="header-sorting-img" id="continue-sort-btn">
+            <img src="./images/sort.png" alt="" height="20px" width="20px" class="header-sorting-img  icon" id="continue-sort-btn">
           </div>
           <div class="done-container ">
             <h4 class="done" id="done">DONE</h4>
-            <img src="./images/sort.png" alt="" height="20px" width="20px" class="header-sorting-img" id="done-sort-btn">
+            <img src="./images/sort.png" alt="" height="20px" width="20px" class="header-sorting-img  icon" id="done-sort-btn">
           </div>
           <div class="submitted-container">
             <h4 class="submitted" id="submitted">SUBMITTED</h4>
-            <img src="./images/sort.png" alt="" height="20px" width="20px" class="header-sorting-img" id="submit-sort-btn">
+            <img src="./images/sort.png" alt="" height="20px" width="20px" class="header-sorting-img icon" id="submit-sort-btn">
           </div>   
         </div>
         <div class="drag-drop-container">
           <div class="col1 col" ondrop="dropped(event)" ondragover="canDrop(event)" id="todo-board">
             <div class="task" id="tast1" draggable="true" ondragstart="drag(event)">
               <div class="top-section">
-                <img src="./images/checked.png" alt="checked mark" class="task-icons">
+                <img src="./images/checked.png" alt="checked mark" class="task-icons icon">
                 <p class="task-title">chaicode Assignments</p>
               </div>
               <div class="middle-section">
-                <p class="priority high">High</p>
+                <p class="priority high">high</p>
                 <div class="edit-delete-btn">
                   <button class="edit">✎</button>
                   <button class="dlt">X</button>
@@ -147,11 +154,11 @@
             </div>
             <div class="task" id="task2" draggable="true" ondragstart="drag(event)">
               <div class="top-section">
-                <img src="./images/checked.png" alt="" class="task-icons">
+                <img src="./images/checked.png" alt="" class="task-icons icon">
                 <p class="task-title">Web dev cohort Videos Revise</p>
               </div>
               <div class="middle-section">
-                <p class="priority medium">Medium</p>
+                <p class="priority medium">medium</p>
                 <div class="edit-delete-btn">
                   <button class="edit">✎</button>
                   <button class="dlt">X</button>
@@ -173,7 +180,7 @@
                 <p class="task-title">Web dev new Js videos</p>
               </div>
               <div class="middle-section">
-                <p class="priority high">High</p>
+                <p class="priority high">high</p>
                 <div class="edit-delete-btn">
                   <button class="edit">✎</button>
                   <button class="dlt">X</button>
@@ -195,7 +202,7 @@
                 <p class="task-title">DSA Array revise</p>
               </div>
               <div class="middle-section">
-                <p class="priority low">Low</p>
+                <p class="priority low">low</p>
                 <div class="edit-delete-btn">
                   <button class="edit">✎</button>
                   <button class="dlt">X</button>
@@ -217,7 +224,7 @@
                 <p class="task-title">Jobs apply </p>
               </div>
               <div class="middle-section">
-                <p class="priority medium">Medium</p>
+                <p class="priority high">high</p>
                 <div class="edit-delete-btn">
                   <button class="edit">✎</button>
                   <button class="dlt">X</button>
