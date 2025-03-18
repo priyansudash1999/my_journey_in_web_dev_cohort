@@ -72,8 +72,8 @@ const updateClock = () => {
   const date = document.getElementsByClassName('para')[0]
 
   const now = new Date()
-  const hours = now.getHours() ;  // if now.getHours() % 12 gives 0 then it will be 12
-  const mins = now.getMinutes() // if mimute is 1 then it will show 01
+  const hours = now.getHours() ;  
+  const mins = now.getMinutes() 
   const secs = now.getSeconds()
   const am_pm = hours >= 12 ? 'PM' : 'AM'
   const hours12 = hours % 12 || 12;
@@ -100,4 +100,4 @@ const updateClock = () => {
 
 setInterval(updateClock, 1000)
 
-updateClock() // without this the time first shows 00:00:00
+updateClock() // without this the time first shows 00:00:00, then take 1 sec to show the original time
