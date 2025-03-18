@@ -1,0 +1,94 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #312b2b;
+  color: #fff;
+}
+
+.outer-container{
+  background: linear-gradient(45deg, #4904c9, #09ca6a);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.inner-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000;
+  padding: 20px;
+  box-shadow: -3px -2px 10px #09147e;
+  border-radius: 10px;
+}
+
+.input-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.timer{
+  font-size: 48px;
+  margin-bottom: 30px;
+}
+.userInput{
+  padding: 10px 20px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.userInput:active{
+  border: 2px solid #b30e0e;
+}
+
+.start-btn{
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.start-btn:hover{
+  background: linear-gradient(50deg, #000, #fff)
+}
+.start-btn:active{
+  background: linear-gradient(50deg, #fff, #000)
+}
+
+.pause-btn{
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.pause-btn:hover{
+  background: linear-gradient(50deg, #000, #fff)
+}
+.pause-btn:active{
+  background: linear-gradient(50deg, #fff, #000)
+}
+
+
+.stop-btn{
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.stop-btn:hover{
+  background: linear-gradient(50deg, #000, #fff)
+}
+.stop-btn:active{
+  background: linear-gradient(50deg, #fff, #000)
+}
+
+
+.displayTime{
+  margin-top: 10px;
+}
