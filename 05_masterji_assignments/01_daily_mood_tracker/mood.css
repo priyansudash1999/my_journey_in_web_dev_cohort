@@ -1,0 +1,105 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.outer-container{
+  background: linear-gradient(45deg, #1d0ac9, #73c57a);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+}
+.input-container{
+  display: flex;
+  box-shadow: -2px -3px 10px #73c57a;
+  padding: 10px 29px;
+  position: relative;
+  display: inline-block;
+}
+.dropdown-btn{
+  font-size: 20px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 10px;
+  color: rgb(57, 14, 177);
+  display: hidden;
+  cursor: pointer;
+  box-shadow: -4px -2px 10px #027c21;
+}
+.dropdown-emojis{
+  display: none;
+  position: absolute;
+  background-color: #3e8e41;
+  min-width: 175px;
+  box-shadow: 0px 8px 16px 0px #027c21;
+  z-index: 0;
+  border-top-right-radius: 10px;
+}
+.dropdown-emojis a {
+  color: black;
+  padding: 12px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+}
+.dropdown-emojis a:hover {
+  background-color: #ce11be;
+  font-size: 30px;
+}
+
+.input-container:hover .dropdown-emojis {
+  display: block;
+}
+
+.input-container:hover .dropdown-btn {
+  background-color: #3e8e41;
+  border-top-right-radius: 10px;
+}
+
+
+/* display container */
+.hr-line{
+  width: 90vw;
+  height: 4px;
+  background-color: rgb(184, 11, 140);
+  position: relative;
+  margin: 20px 0;
+}
+
+.small-vr{
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background-color: white;
+  top: 0px;
+}
+.mood-display{
+  margin-left: -35px;
+  margin-top: 20px;
+  height: 5em;
+  width: 6em;
+  display: flex;
+  flex-direction: column;
+  text-align:start;
+  box-shadow: 0 0 10px #ce11be;
+  border-radius: 10px;
+}
+
+.mood-display1{
+  border: 1px solid rgb(101, 11, 185);
+  background-color: rgb(207, 204, 26);
+}
+
+.date{
+  font-size: medium;
+}
+.time{
+  font-size: small;
+}
