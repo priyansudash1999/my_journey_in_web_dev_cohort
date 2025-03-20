@@ -15,8 +15,11 @@ boring_mood.addEventListener('click', (e) => displayOnScreen(e))
 
 let count = 0
 
+// display moods on screen
 function displayOnScreen(e){
-  if(count < 9){
+  
+  // If count is less than 26 then it will add
+  if(count < 26){
     const mood_display = document.createElement('div')
     const small_vr = document.createElement('div')
 
@@ -82,11 +85,15 @@ function displayOnScreen(e){
   }
 }
 
+// store to local storage
+
 function storeToLocalStorage(date, time, emoji){
   let user_moods = JSON.parse(localStorage.getItem('moods'))|| []
   user_moods.push({date, time, emoji})
   localStorage.setItem('moods', JSON.stringify(user_moods))
 }
+
+// get value from local storage to display
 
 function displayLocalStorageItem(){
   let user_moods = JSON.parse(localStorage.getItem('moods')) || []
