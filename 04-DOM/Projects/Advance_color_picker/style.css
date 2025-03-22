@@ -23,7 +23,8 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 700px;
+  height: 600px;
+  max-height: 100%;
   gap: 20px;
   box-shadow: -0 -0 15px #0aa7a7;
   padding: 10px ;
@@ -31,6 +32,7 @@ body{
 }
 #colorInput{
   height: 150px;
+  max-height: auto;
   width: 200px;
 }
 
@@ -79,7 +81,8 @@ body{
   gap: 20px;
 }
 .list_of_saved_color{
-  height: 100px;
+  min-height: 100px;
+  height: 100%;
   width: 250px;
   display: flex;
   gap: 4px;
