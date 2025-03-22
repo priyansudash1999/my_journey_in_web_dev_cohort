@@ -1,0 +1,95 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #000;
+  color: #fff;
+}
+
+.container{
+  height: 100vh;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border: 1px solid white;
+}
+.input-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 700px;
+  gap: 20px;
+  box-shadow: -0 -0 15px #0aa7a7;
+  padding: 10px ;
+  border-radius: 20px;
+}
+#colorInput{
+  height: 150px;
+  width: 200px;
+}
+
+#coptBtn{
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#coptBtn:hover{
+  background: linear-gradient(45deg, #fff, #000);
+}
+#coptBtn:active{
+  background: linear-gradient(45deg, #000, #fff);
+}
+#saveColorButton{
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#saveColorButton:hover{
+  background: linear-gradient(45deg, #04bfc5, #d30956);
+  font-size: 15px;
+}
+#saveColorButton:active{
+  background: linear-gradient(45deg, #d30956, #fff);
+}
+
+.complementary-color{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.complement-color{
+  margin: auto;
+  margin-top: 10px;
+  height: 100px;
+  width: 150px;
+}
+.favourites{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.list_of_saved_color{
+  height: 100px;
+  width: 250px;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.color-list{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  list-style-type: none;
+}
