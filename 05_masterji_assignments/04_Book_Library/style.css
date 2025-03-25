@@ -12,7 +12,6 @@ body{
   width: 100vw;
 }
 
-
 .header-container{
   display: flex;
   justify-content: space-between;
@@ -21,15 +20,19 @@ body{
   background: linear-gradient(10deg, #000, #fff);
 }
 
-.menu-icon{
-  margin-top: 6px;
-  height: 40px;
-  width: 40px;
+.icon{
+  margin: 10px;
+  height: 25px;
+  width: 30px;
   cursor: pointer;
-  margin-right: auto;
 }
 
-.menu-icon-dark-theme{
+.icon:hover{
+  height: 30px;
+  width: 30px;
+}
+
+.icon-dark-theme{
   filter: brightness(0) invert(1);
 }
 
@@ -42,7 +45,11 @@ body{
 
 .header-items{
   font-size: 20px;
-  /*  */
+  display: flex;
+}
+.small-screen{
+  display: flex ;
+  margin-left: 10px;
 }
 .header-btn{
   border: 1px solid black;
@@ -106,10 +113,15 @@ body{
   font-size: 20px;
 }
 
+.lower-container{
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
 /* sidebar */
 
 .sidebar{
-  width: 180px;
+  width: 250px;
   height: 100vh;
   margin-left: 10px;
   border-right: 1px dotted aquamarine;
@@ -203,4 +215,115 @@ body{
   background-color: #03010a;
   border: 1px solid #fff;
   border-radius: 50%;
+}
+
+.grid-view{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+/* dynamic */
+.book-image{
+  width: 160px;
+  height: 200px;
+  border: 1px solid #fff;
+}
+.book-title{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.book-authors{
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-weight: normal;
+  font-family: 'Courier New', Courier, monospace;
+}
+.book-publisher{
+  font-size: 12px;
+}
+.book-publish-date{
+  font-size: 10px;
+}
+.element-container{
+  height: 200px;
+  width: 400px;
+  display: flex;
+  /* align-items: center; */
+  gap: 10px;
+  border: 1px solid #fff;
+}
+.data-container{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.small-screen {
+  display: none;
+}
+
+.mid-screen {
+  display: none;
+}
+
+.large-screen {
+  display: none;
+}
+
+/* Show only small-screen elements on phone size */
+@media screen and (width <= 600px) {
+  .small-screen {
+    display: flex; 
+  }
+
+  .mid-screen,
+  .large-screen,
+  .sidebar {
+    display: none; 
+  }
+
+  .header-container{
+    gap: 10px;
+  }
+  .bg-changer{
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+}
+
+/* Show only mid-screen elements on tablet size */
+@media screen and (601px <= width <= 1024px){
+  .mid-screen {
+    display: flex;
+  }
+
+  .small-screen,
+  .large-screen,
+  .sidebar {
+    display: none;
+  }
+  .bg-changer{
+    margin-top: 10px;
+  }
+  
+}
+
+/* Show only large-screen elements on laptop & bigger screens */
+@media screen and (min-width: 1025px) {
+  .large-screen {
+    display: flex;
+  }
+
+  .small-screen,
+  .mid-screen {
+    display: none;
+  }
+
+  .sidebar {
+    display: block; 
+    width: 400px;
+  }
+ 
 }
