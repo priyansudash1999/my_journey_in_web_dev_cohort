@@ -271,6 +271,22 @@ body{
 .large-screen {
   display: none;
 }
+.next-back-btn{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+#next, #prev{
+  height: 30px;
+  width: 30px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: transparent;
+  color: #fff;
+}
 
 /* Show only small-screen elements on phone size */
 @media screen and (width <= 600px) {
@@ -323,7 +339,7 @@ body{
 
   .sidebar {
     display: block; 
-    width: 400px;
+    width: 300px;
   }
  
 }
