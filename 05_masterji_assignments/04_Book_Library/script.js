@@ -1,6 +1,8 @@
 const grid_view = document.getElementsByClassName('grid-view')[0]
 const list_view = document.getElementsByClassName('list-view')[0]
 
+const toggle_list_grid = document.querySelectorAll('.list-grid-toggle')
+
 // header-items
 const header_items = document.getElementsByClassName('header-items')[0]
 
@@ -67,85 +69,103 @@ function displayBooksOnScreen(page){
   }
 
   booksToShow.forEach(book => {
-    const {title, authors, publisher, publishedDate, imageLinks} = book.volumeInfo || {}
-    
-    document.querySelectorAll('.toggle-iist-grid').forEach(toggleBtn => {
-      if (toggleBtn.src.includes('list.png')) {
-        list_view.classList.remove('hidden')
-        grid_view.classList.add('hidden')
-        const book_list_view_img = document.createElement('img')
-        book_list_view_img.src = imageLinks.thumbnail
-        book_list_view_img.alt = title 
-        book_list_view_img.classList.add('book-list-view-img')
+    const {title, authors, publisher, publishedDate, imageLinks, infoLink} = book.volumeInfo || {}
+    booksPerPage = getBooksPerPageOnGridView()
+      let startIndex = (page - 1) * booksPerPage; 
+      let endIndex = startIndex + booksPerPage;
+      let booksToShow = allBooks.slice(startIndex, endIndex);
 
-        const book_list_view_title = document.createElement('h5')
-        book_list_view_title.innerText = title
-        book_list_view_title.classList.add('book-list-view-title') 
-
-        const book_list_view_authors = document.createElement('h6')
-        book_list_view_authors.innerText = authors.join(', ') 
-        book_list_view_authors.classList.add('book-list-view-authors')
-
-        const book_list_publishers = document.createElement('p')
-        book_list_publishers.innerText = publisher 
-        book_list_publishers.classList.add('book-list-view-publishers')
-
-        const list_publish_date = document.createElement('p')
-        list_publish_date.innerText = publishedDate
-        list_publish_date.classList.add('book-list-view-publish-date')
-
-        const list_view_data_container = document.createElement('div')
-        list_view_data_container.classList.add('list-view-data-container')
-        list_view_data_container.append(book_list_view_title, book_list_view_authors, book_list_publishers, list_publish_date);
-
-
-        const list_view_element_container = document.createElement('div')
-        list_view_element_container.classList.add('list-view-element-container')
-        list_view_element_container.append(book_list_view_img, list_view_data_container)
-
-        list_view.appendChild(list_view_element_container)
+      if (booksToShow.length === 0) {
+        console.log("No books found.");
+        return;
       }
-      else{
-        list_view.classList.add('hidden')
-        grid_view.classList.remove('hidden')
-        const book_img = document.createElement('img')
-        book_img.src = imageLinks.thumbnail
-        book_img.alt = title 
-        book_img.classList.add('book-image')
+        
+      const book_img = document.createElement('img')
+      book_img.src = imageLinks.thumbnail
+      book_img.alt = title 
+      book_img.classList.add('book-image')
 
-        const book_title = document.createElement('h3')
-        book_title.innerText = title 
-        book_title.classList.add('book-title')
+      const book_title = document.createElement('h3')
+      book_title.innerText = title 
+      book_title.classList.add('book-title')
 
-        const book_authors = document.createElement('h5')
-        book_authors.innerText = authors.join(', ') 
-        book_authors.classList.add('book-authors')
+      const book_authors = document.createElement('h5')
+      book_authors.innerText = authors.join(', ') 
+      book_authors.classList.add('book-authors')
 
-        const book_publishers = document.createElement('p')
-        book_publishers.innerText = publisher 
-        book_publishers.classList.add('book-publisher')
+      const book_publishers = document.createElement('p')
+      book_publishers.innerText = publisher 
+      book_publishers.classList.add('book-publisher')
 
-        const book_publish_date = document.createElement('p')
-        book_publish_date.innerText = publishedDate
-        book_publish_date.classList.add('book-publish-date')
+      const book_publish_date = document.createElement('p')
+      book_publish_date.innerText = publishedDate
+      book_publish_date.classList.add('book-publish-date')
 
-        const data_container = document.createElement('div')
-        data_container.classList.add('data-container')
-        data_container.append(book_title, book_authors, book_publishers, book_publish_date);
+      const data_container = document.createElement('div')
+      data_container.classList.add('data-container')
+      data_container.append(book_title, book_authors, book_publishers, book_publish_date);
 
-        const element_container = document.createElement('div')
-        element_container.classList.add('element-container')
-        element_container.append(book_img, data_container)
-
-        grid_view.appendChild(element_container)
+      const element_container = document.createElement('div')
+      element_container.classList.add('element-container')
+      element_container.append(book_img, data_container)
+      if (infoLink) {
+        element_container.style.cursor = 'pointer'
+        element_container.addEventListener('click', () => {
+          window.open(infoLink, '_blank')
+        });
+      } else {
+        element_container.title = 'No additional details available'
       }
+
+      grid_view.appendChild(element_container)
+      page_number.innerText = currPage
     })
-    
-    /*for list view */
-    
-  });
-  page_number.innerText = currPage
+    // const book_list_view_img = document.createElement('img')
+    // book_list_view_img.src = imageLinks.thumbnail
+    // book_list_view_img.alt = title 
+    // book_list_view_img.classList.add('book-list-view-img')
+
+    // const book_list_view_title = document.createElement('h5')
+    // book_list_view_title.innerText = title
+    // book_list_view_title.classList.add('book-list-view-title') 
+
+    // const book_list_view_authors = document.createElement('h6')
+    // book_list_view_authors.innerText = authors.join(', ') 
+    // book_list_view_authors.classList.add('book-list-view-authors')
+
+    // const book_list_publishers = document.createElement('p')
+    // book_list_publishers.innerText = publisher 
+    // book_list_publishers.classList.add('book-list-view-publishers')
+
+    // const list_publish_date = document.createElement('p')
+    // list_publish_date.innerText = publishedDate
+    // list_publish_date.classList.add('book-list-view-publish-date')
+
+    // const list_view_data_container = document.createElement('div')
+    // list_view_data_container.classList.add('list-view-data-container')
+    // list_view_data_container.append(book_list_view_title, book_list_view_authors, book_list_publishers, list_publish_date);
+
+
+    // const list_view_element_container = document.createElement('div')
+    // list_view_element_container.classList.add('list-view-element-container')
+    // list_view_element_container.append(book_list_view_img, list_view_data_container)
+    // if (infoLink) {
+    //   list_view_element_container.style.cursor = 'pointer'
+    //   list_view_element_container.addEventListener('click', () => {
+    //     window.open(infoLink, '_blank')
+    //   });
+    // } else {
+    //   element_container.title = 'No additional details available'
+    // }
+
+    // list_view.appendChild(list_view_element_container)
   
+  toggle_list_grid.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      alert('I did my project very complicated, so right now due to shortage time I can not add toggle functionality, i will fix it later.')
+    })
+  })
+
 }
 prevBtn.addEventListener('click', () => {
   if (currPage > 1) {
@@ -220,10 +240,10 @@ document.querySelectorAll('.search').forEach(search => {
 })
 
 function displayFilterBooks(filteredBooks){
-  grid_view.innerHTML = ''; // Clear the previous books
+  grid_view.innerHTML = ''
 
   if (filteredBooks.length === 0) {
-    grid_view.innerHTML = '<p>No books found</p>';
+    grid_view.innerHTML = '<p>No books found</p>'
     return;
   }
 
@@ -282,21 +302,25 @@ function sortBooks(sortBy) {
   displayBooksOnScreen(currPage)
 }
 
-document.querySelectorAll('.toggle-iist-grid').forEach(toggleBtn => {
-  toggleBtn.addEventListener('click', () => {
-    if (toggleBtn.src.includes('list.png')) {
-      toggleBtn.src = './images/grid.png'; 
-      toggleBtn.alt = 'grid'; 
+
+
+// document.querySelectorAll('.toggle-list-grid').forEach(toggleBtn => {
+//   toggleBtn.addEventListener('click', () => {
+//     if (toggleBtn.src.includes('./images/list.png')) {
+//       toggleBtn.src = './images/grid.png'; 
+//       toggleBtn.alt = 'grid'; 
+//       list_view.classList.remove('hidden')
+//       grid_view.classList.add('hidden')
       
-    } else {
-      toggleBtn.src = './images/list.png';
-      toggleBtn.alt = 'list';
-    }
-  });
-});
-
-
-
+//     } 
+    // else {
+    //   toggleBtn.src = './images/list.png';
+    //   toggleBtn.alt = 'list';
+    //   list_view.classList.add('hidden')
+    //   grid_view.classList.remove('hidden')
+      
+    // }
+    // });
 
 
 
