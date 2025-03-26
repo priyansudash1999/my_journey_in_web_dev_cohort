@@ -13,27 +13,43 @@
         <h1 class="title">Pushtakalaya</h1>
         <!-- for mobile screen -->
         <div class="small-screen">
+          <div class="search-bar">
+            <input type="search" name="search" class="search" placeholder="search">
+          </div>
           <div class="bg-changer">🌙</div>
           <div class="header-items">
-            <img src="./images/sorting.png" alt="filter" class="filter-icon icon">
-            <img src="./images/sort (1).png" alt="sort" class="sort-icon icon">
+            <select class="sort">
+              <option value="title">Title (A-Z)</option>
+              <option value="date">Published Date</option>
+            </select>
             <img src="./images/list (1).png" alt="list" class="list-icon icon">
           </div>
         </div>
         <!-- for tab screen -->
         <div class="mid-screen hidden">
+          <div class="search-bar">
+            <input type="search" name="search" class="search" placeholder="search">
+          </div>
+          <select class="sort">
+            <option value="title">Title (A-Z)</option>
+            <option value="date">Published Date</option>
+          </select>
           <div class="bg-changer">🌙</div>
           <div class="header-items">
-            <img src="./images/sorting.png" alt="filter" class="filter-icon icon">
-            <img src="./images/sort (1).png" alt="sort" class="sort-icon icon">
             <img src="./images/list (1).png" alt="list" class="list-icon icon">
           </div>
         </div>
         <!-- for laptop and higher screen -->
         <div class="large-screen  hidden">
+          <div class="search-bar">
+            <input type="search" name="search" class="search" placeholder="search">
+          </div>
           <div class="buttons">
-            <button class="large-screen-menu-buttons" id="filter">filter</button>
-            <button class="large-screen-menu-buttons" id="sort">sort</button>
+            <select class="sort">
+              <option value="default">Sort by</option>
+              <option value="title">Title (A-Z)</option>
+              <option value="date">Published Date</option>
+            </select>
             <button class="large-screen-menu-buttons" id="view">list</button>
           </div>
           <div class="bg-changer">
@@ -46,7 +62,7 @@
       </div>
       <!-- For tablet and mobile screen it will be hidden -->
        <div class="lower-container">
-        <div class="sidebar hidden">
+        <!-- <div class="sidebar hidden">
           <div class="my-fav-books">
             <h3 class="fav-books">My Favourite Books</h3>
             <div class="all-fav-books">
@@ -112,7 +128,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="main-contents">
           <div class="grid-view">
   
@@ -124,8 +140,8 @@
        
        </div>
        <div class="next-back-btn">
-        <button id="prev" disabled>&lt;</button>
-
+        <button id="prev">&lt;</button>
+        <p class="page-number"></p>
         <button id="next">&gt;</button>
       </div>
     </div>
