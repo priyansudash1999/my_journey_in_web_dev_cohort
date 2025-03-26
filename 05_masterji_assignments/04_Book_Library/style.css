@@ -240,6 +240,8 @@ body{
   border-radius: 50%;
 }
 
+
+
 .grid-view{
   display: flex;
   flex-wrap: wrap;
@@ -247,28 +249,71 @@ body{
   justify-content: center;
   margin-top: 20px;
 }
+
+
 /* dynamic */
+
+/* grid book-image */
 .book-image{
   width: 160px;
   height: 200px;
   border: 1px solid #fff;
 }
+
+/* list view title */
+.book-list-view-img{
+  width: 30px;
+  height: 30px;
+
+}
+
+/* grid book-title */
 .book-title{
   font-size: 20px;
   margin-bottom: 10px;
 }
+
+/* list view title */
+.book-list-view-title{
+  font-size: 12px;
+}
+
+/* grid book authors */
 .book-authors{
   font-size: 12px;
   margin-bottom: 10px;
   font-weight: normal;
   font-family: 'Courier New', Courier, monospace;
 }
+
+/* list view authors */
+.book-list-view-authors{
+  font-size: 9px;
+  font-weight: normal;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* grid view publishers */
 .book-publisher{
   font-size: 12px;
 }
+
+/* list view publishers */
+.book-list-view-publishers{
+  font-size: 8px;
+}
+
+/* book publish date grid view */
 .book-publish-date{
   font-size: 10px;
 }
+
+/* list view publish date */
+.book-list-view-publish-date{
+  font-size: 10px;
+}
+
+/* grid view element container */
 .element-container{
   height: 200px;
   width: 400px;
@@ -280,9 +325,27 @@ body{
 .element-container-dark{
   border: 1px solid #080000;
 }
+
+/* list view-element-container */
+.list-view-element-container{
+  height: 30px;
+  width: full;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #0dc4a5;
+}
+
+/* grid view data container */
 .data-container{
   display: flex;
   flex-direction: column;
+  gap: 5px;
+}
+
+/* list view data container */
+.list-view-data-container{
+  display: flex;
   gap: 5px;
 }
 
@@ -336,6 +399,10 @@ body{
   margin-top: 7px;
 }
 
+
+
+
+/*  I used two types to handle media query one is min width- max-width and another greater or less than opertaor */
 /* Show only small-screen elements on phone size */
 @media screen and (width <= 600px) {
   .small-screen {
@@ -361,6 +428,7 @@ body{
     margin-top: 10px;
     border-radius: 30px;
     padding: 2px ;
+    background: transparent;
   }
 }
 
@@ -384,6 +452,7 @@ body{
     margin: 14px;
     border-radius: 30px;
     padding: 2px ;
+    background: transparent;
   }
 }
 
@@ -405,6 +474,9 @@ body{
  
   .sort{
     border-radius: 30px;
-    padding: 2px ;
+    /* padding: 2px ; */
+    background: transparent;
+    height: 30px;
+    margin-top: 8px;
   }
 }

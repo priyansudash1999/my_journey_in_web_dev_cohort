@@ -9,6 +9,7 @@ const sortSelects = document.querySelectorAll('.sort')
 const list_grid = document.getElementById('view')
 
 const toggle_theme = document.querySelectorAll('.bg-changer')
+const list_grid_view = document.querySelectorAll('.toggle-iist-grid')
 
 // get next and prev btns
 const nextBtn = document.getElementById('next')
@@ -67,36 +68,81 @@ function displayBooksOnScreen(page){
 
   booksToShow.forEach(book => {
     const {title, authors, publisher, publishedDate, imageLinks} = book.volumeInfo || {}
-    const book_img = document.createElement('img')
-    book_img.src = imageLinks.thumbnail
-    book_img.alt = title 
-    book_img.classList.add('book-image')
+    
+    document.querySelectorAll('.toggle-iist-grid').forEach(toggleBtn => {
+      if (toggleBtn.src.includes('list.png')) {
+        list_view.classList.remove('hidden')
+        grid_view.classList.add('hidden')
+        const book_list_view_img = document.createElement('img')
+        book_list_view_img.src = imageLinks.thumbnail
+        book_list_view_img.alt = title 
+        book_list_view_img.classList.add('book-list-view-img')
 
-    const book_title = document.createElement('h3')
-    book_title.innerText = title 
-    book_title.classList.add('book-title')
+        const book_list_view_title = document.createElement('h5')
+        book_list_view_title.innerText = title
+        book_list_view_title.classList.add('book-list-view-title') 
 
-    const book_authors = document.createElement('h5')
-    book_authors.innerText = authors.join(', ') 
-    book_authors.classList.add('book-authors')
+        const book_list_view_authors = document.createElement('h6')
+        book_list_view_authors.innerText = authors.join(', ') 
+        book_list_view_authors.classList.add('book-list-view-authors')
 
-    const book_publishers = document.createElement('p')
-    book_publishers.innerText = publisher 
-    book_publishers.classList.add('book-publisher')
+        const book_list_publishers = document.createElement('p')
+        book_list_publishers.innerText = publisher 
+        book_list_publishers.classList.add('book-list-view-publishers')
 
-    const book_publish_date = document.createElement('p')
-    book_publish_date.innerText = publishedDate
-    book_publish_date.classList.add('book-publish-date')
+        const list_publish_date = document.createElement('p')
+        list_publish_date.innerText = publishedDate
+        list_publish_date.classList.add('book-list-view-publish-date')
 
-    const data_container = document.createElement('div')
-    data_container.classList.add('data-container')
-    data_container.append(book_title, book_authors, book_publishers, book_publish_date);
+        const list_view_data_container = document.createElement('div')
+        list_view_data_container.classList.add('list-view-data-container')
+        list_view_data_container.append(book_list_view_title, book_list_view_authors, book_list_publishers, list_publish_date);
 
-    const element_container = document.createElement('div')
-    element_container.classList.add('element-container')
-    element_container.append(book_img, data_container)
 
-    grid_view.appendChild(element_container)
+        const list_view_element_container = document.createElement('div')
+        list_view_element_container.classList.add('list-view-element-container')
+        list_view_element_container.append(book_list_view_img, list_view_data_container)
+
+        list_view.appendChild(list_view_element_container)
+      }
+      else{
+        list_view.classList.add('hidden')
+        grid_view.classList.remove('hidden')
+        const book_img = document.createElement('img')
+        book_img.src = imageLinks.thumbnail
+        book_img.alt = title 
+        book_img.classList.add('book-image')
+
+        const book_title = document.createElement('h3')
+        book_title.innerText = title 
+        book_title.classList.add('book-title')
+
+        const book_authors = document.createElement('h5')
+        book_authors.innerText = authors.join(', ') 
+        book_authors.classList.add('book-authors')
+
+        const book_publishers = document.createElement('p')
+        book_publishers.innerText = publisher 
+        book_publishers.classList.add('book-publisher')
+
+        const book_publish_date = document.createElement('p')
+        book_publish_date.innerText = publishedDate
+        book_publish_date.classList.add('book-publish-date')
+
+        const data_container = document.createElement('div')
+        data_container.classList.add('data-container')
+        data_container.append(book_title, book_authors, book_publishers, book_publish_date);
+
+        const element_container = document.createElement('div')
+        element_container.classList.add('element-container')
+        element_container.append(book_img, data_container)
+
+        grid_view.appendChild(element_container)
+      }
+    })
+    
+    /*for list view */
+    
   });
   page_number.innerText = currPage
   
@@ -230,12 +276,27 @@ function sortBooks(sortBy) {
   } else if (sortBy === "date") {
     allBooks.sort(
       (a, b) => new Date(b.volumeInfo.publishedDate) - new Date(a.volumeInfo.publishedDate)
-    );
+    )
   }
-
   currPage = 1;
-  displayBooksOnScreen(currPage);
+  displayBooksOnScreen(currPage)
 }
+
+document.querySelectorAll('.toggle-iist-grid').forEach(toggleBtn => {
+  toggleBtn.addEventListener('click', () => {
+    if (toggleBtn.src.includes('list.png')) {
+      toggleBtn.src = './images/grid.png'; 
+      toggleBtn.alt = 'grid'; 
+      
+    } else {
+      toggleBtn.src = './images/list.png';
+      toggleBtn.alt = 'list';
+    }
+  });
+});
+
+
+
 
 
 
