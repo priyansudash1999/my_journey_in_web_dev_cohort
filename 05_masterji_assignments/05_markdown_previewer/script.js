@@ -13,6 +13,8 @@ reset.addEventListener('click', () => {
   }
 })
 
+input.addEventListener('input', updatePreview);
+
 function convertMarkDown(text) {
   const lines = text.split('\n');
   let convertedText = '';
@@ -45,7 +47,12 @@ function convertMarkDown(text) {
 
 
     /* --------------------- Bold and Italic ------------------- */
-    
+    else if (trimmedLine.startsWith('* ')){
+      convertedText += `<strong>${trimmedLine.substring(2)}</strong>\n`
+    }
+    else if (trimmedLine.startsWith('_ ')){
+      convertedText += `<em>${trimmedLine.substring(2)}</em>\n`
+    }
 
     /* ---------------------- Unordered List ------------------- */
     else if (trimmedLine.startsWith('- ')) {
@@ -66,12 +73,33 @@ function convertMarkDown(text) {
     } 
 
 
-    /* ----------------------- images and links ------------------- */
+    /* ------------------ Links ------------------ */
+    else if (trimmedLine.includes('](') && trimmedLine.includes('[') && trimmedLine.includes(')')) {
+      let startText = trimmedLine.indexOf('[') + 1;
+      let endText = trimmedLine.indexOf(']');
+      let startURL = trimmedLine.indexOf('(') + 1;
+      let endURL = trimmedLine.indexOf(')');
 
+      if (startText > 0 && endText > startText && startURL > 0 && endURL > startURL) {
+        let textPart = trimmedLine.substring(startText, endText);
+        let urlPart = trimmedLine.substring(startURL, endURL);
+        convertedText += `<a href="${urlPart}">${textPart}</a>\n`;
+      }
+    }
 
+    /* ------------------ Images ------------------ */
+    else if (trimmedLine.includes('![') && trimmedLine.includes('](') && trimmedLine.includes(')')) {
+      let startAlt = trimmedLine.indexOf('![') + 2;
+      let endAlt = trimmedLine.indexOf(']');
+      let startSrc = trimmedLine.indexOf('(') + 1;
+      let endSrc = trimmedLine.indexOf(')');
 
-
-
+      if (startAlt > 1 && endAlt > startAlt && startSrc > 0 && endSrc > startSrc) {
+        let altText = trimmedLine.substring(startAlt, endAlt);
+        let srcText = trimmedLine.substring(startSrc, endSrc);
+        convertedText += `<img src="${srcText}" alt="${altText}">\n`;
+      }
+    }
 
     /* ---------------------- Handle End of Lists ------------------- */
     else {
@@ -87,7 +115,7 @@ function convertMarkDown(text) {
     }
   });
 
-  /* ---------------------- Ensure List is Closed ------------------- */
+  /* ---------------------- Ensure List is Closed ------------------- (not necessary but it is a confirmation) */ 
   if (inUnorderedList) convertedText += '</ul>\n';
   if (inOrderedList) convertedText += '</ol>\n';
 
@@ -99,7 +127,7 @@ function updatePreview() {
   output.innerHTML = convertMarkDown(input_text);
 }
 
-input.addEventListener('input', updatePreview);
+
 
 
 
